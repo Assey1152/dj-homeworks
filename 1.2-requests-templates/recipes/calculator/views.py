@@ -28,3 +28,19 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+
+def recipes(request, name):
+    recipe = DATA.get(name)
+    try:
+        servings = int(request.GET.get('servings', 1))
+    except ValueError:
+        print('Invalid person number, set to default')
+        servings = 1
+    personal_recipe = {}
+    for key, value in recipe.items():
+        personal_recipe[key] = value * servings
+    context = {
+        'recipe': personal_recipe
+    }
+    return render(request, 'calculator/index.html', context)
