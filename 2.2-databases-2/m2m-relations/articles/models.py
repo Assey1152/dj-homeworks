@@ -19,7 +19,7 @@ class Article(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, verbose_name='Раздел')
-    articles = models.ManyToManyField(Article, related_name='tags', through='Scope')
+    articles = models.ManyToManyField(Article, related_name='tagsre', through='Scope')
 
     class Meta:
         verbose_name = 'Раздел'
